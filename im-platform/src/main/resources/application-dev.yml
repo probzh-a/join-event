@@ -6,9 +6,8 @@ spring:
     password: root
   data:
     redis:
-      host: localhost
+      host: 117.72.91.32
       port: 6379
-      database: 1
 
 minio:
   endpoint: http://127.0.0.1:9000 #内网地址

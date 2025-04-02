@@ -6,7 +6,7 @@ spring:
     password: root
   data:
     redis:
-      host: 117.72.91.32
+      host: 0.0.0.1
       port: 6379
 
 minio:

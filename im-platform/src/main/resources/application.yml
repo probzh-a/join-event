@@ -13,13 +13,51 @@ spring:
       max-file-size: 50MB
       max-request-size: 50MB
 
+logging:
+  config: classpath:logback-spring.xml
+knife4j:
+  enable: true
+  openapi:
+    title: smart-join-event官方文档
+    description: "api文档"
+    email: h18626940810@163.com
+    concat: ljh
+    version: v1.0.0
+  production: false
+  setting:
+    custom-code: 500
+    enable-footer-custom: false
+    language: zh_cn
+    enable-footer: true
+    enable-debug: true
+    enable-open-api: true
+    enable-host: false
+
+swagger:
+  enabled: true
+
 mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml,classpath:mapper/*/*.xml
+  type-aliases-package: com.dynamic.join-event
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
-      id-type: AUTO # ID自增
-  configuration:
-    map-underscore-to-camel-case: true  #开启自动驼峰命名规则
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+
+idworker:
+  snowflake:
+    workerId: 1 #工作机器ID(0~31)
+
+# 线程池配置
+threadpoolproperty:
+  corePoolSize: 4
+  maxPoolSize: 8
+  keepAliveSeconds: 60
+  queueCapacity: 100
+  threadNamePrefix: join-event-ThreadPoolExecutor-
+  rejectedExecutionHandler:  1
 
 jwt:
   accessToken:
